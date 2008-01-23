@@ -23,7 +23,8 @@
 __author__ = "crodas,czayas"
 
 
+import scanner
 import parser
 
-objParser = parser.Tokenizer()
-f = objParser.tokenize(file("ejemplos/cuadrado.k").read())
+objParser = scanner.kaTokenizer()
+toked = objParser.tokenize(file("ejemplos/cuadrado.k").read())
