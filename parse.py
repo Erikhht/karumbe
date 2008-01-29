@@ -18,10 +18,31 @@
 #    59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ############################################################################
 
+from ply import *
+import tokenize
 
-import parse
+tokens = tokenize.tokens
 
-data = open("/home/crodas/projects/karumbe/ejemplos/cuadrado.k").read()
+precedence = (
+               ('left', 'PLUS','MINUS'),
+               ('left', 'TIMES','DIVIDE'),
+               ('left', 'POWER'),
+               ('right','UMINUS')
+)
 
-      
-print parse.parse(data)
+
+def p_error(p):
+    if not p:
+        print "SYNTAX ERROR AT EOF"
+  
+  
+  
+bparser = yacc.yacc()
+
+
+def parse(data):
+    bparser.error = 0
+    p = bparser.parse(data)
+    if bparser.error: return None
+    return p
+

@@ -19,6 +19,7 @@
     </general>
     <run>
       <mainprogram>karumbe.py</mainprogram>
+      <directoryradio>executable</directoryradio>
     </run>
   </kdevscriptproject>
   <kdevdoctreeview>
@@ -71,9 +72,12 @@
     <tree>
       <hidenonprojectfiles>false</hidenonprojectfiles>
       <hidepatterns>*.o,*.lo,CVS</hidepatterns>
+      <showvcsfields>false</showvcsfields>
     </tree>
     <groups>
       <group pattern="*.py" name="Python files" />
+      <hidenonprojectfiles>false</hidenonprojectfiles>
+      <hidenonlocation>false</hidenonlocation>
     </groups>
   </kdevfileview>
   <kdevfilecreate>

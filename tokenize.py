@@ -1,4 +1,3 @@
-# -*- coding: latin-1 -*-
 ############################################################################
 #    Copyright (C) 2008 by crodas,czayas                                   #
 #    mail@cesarodas.com, mail@carloszayas.com                              #
@@ -19,36 +18,63 @@
 #    59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
 ############################################################################
 
-from spark import GenericParser
+from ply import *
 
-#   KaParser
-#
-#   El parseador es el que interpreta las partes o token que recibe
-#   del kaTokenizer, basicamente aqui se define las reglas del lenguaje
-#   en si y en el kaTokenizer las partes indivisibles (numeros, letras, puntuaciones, etc)
-#   
-#   
-class kaParser(GenericParser):
-    def __init__(self, start):
-        GenericParser.__init__(self, start)
+keywords = (
+    'REPETIR','UN','TIENE','Y','ES','FIN','VECES','COMMENT','MLCOMMENT'
+) 
 
-    def typestring(self, token):
-        return token.type
 
-    def error(self, token):
-        print "Error de sintaxis `%s' (linea %s)" % (token, token.lineno)
-        raise SystemExit   
+tokens = keywords + (
+     'PLUS','MINUS','TIMES','DIVIDE','POWER',
+     'LPAREN','RPAREN','LT','LE','GT','GE','NE',
+     'COMMA','SEMI', 'INTEGER','FLOAT', 'STRING',
+     'ID','NEWLINE'
+)
 
-    def p_funcdef(self, args):
-        """
-            funcdef ::= UN STRING TIENE parameters Y ES NEWLINE suite NEWLINE FIN
-            funcdef ::= UN STRING ES NEWLINE suite NEWLINE FIN
-        """
-        print "Recognizing new function %s " % args[1]
+t_ignore = ' \t'
+
+def t_ID(t):
+    r'[A-Z][A-Z0-9]*'
+    if t.value in keywords:
+        t.type = t.value
+    return t
     
-    def p_parameters(self,args):
-        """
-            parameters ::= STRING
-            parameters ::= STRING, parameters
-        """
-        pass
+def t_MLCOMMENT(t):
+    r' /\*(.|\n)*?\*/'   
+    return t
+   
+def t_COMMENT(t):
+    r'\#s.*'
+    return t
+
+    
+
+t_PLUS    = r'\+'
+t_MINUS   = r'-'
+t_TIMES   = r'\*'
+t_POWER   = r'\^'
+t_DIVIDE  = r'/'
+t_LPAREN  = r'\('
+t_RPAREN  = r'\)'
+t_LT      = r'<'
+t_LE      = r'<='
+t_GT      = r'>'
+t_GE      = r'>='
+t_NE      = r'<>'
+t_COMMA   = r'\,'
+t_SEMI    = r';'
+t_INTEGER = r'\d+'    
+t_FLOAT   = r'((\d*\.\d+)(E[\+-]?\d+)?|([1-9]\d*E[\+-]?\d+))'
+t_STRING  = r'\".*?\"'
+
+def t_NEWLINE(t):
+    r'\n'
+    t.lexer.lineno += 1
+    return t
+
+def t_error(t):
+    print "Letra(", t.value[0],") no reconocida, Linea ",t.lexer.lineno
+    t.lexer.skip(1)
+
+f = lex.lex()
