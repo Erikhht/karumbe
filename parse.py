@@ -24,17 +24,48 @@ import tokenize
 tokens = tokenize.tokens
 
 precedence = (
-               ('left', 'PLUS','MINUS'),
-               ('left', 'TIMES','DIVIDE'),
-               ('left', 'POWER'),
-               ('right','UMINUS')
+               ('left', 'MAS','MENOS'),
+               ('left', 'MULTIPLICADO','DIVIDIDO'),
+               ('left', 'POTENCIA'),
+               ('right','NEGATIVO')
 )
+
+def p_program(p):
+    '''program : program statement
+               | statement'''
+    pass
+
+
+
+def p_binary_operation(p):
+    '''expresion : expresion MAS term
+                 | expresion MENOS term
+       termino   : termino MULTIPLICADO factor
+                 | termino DIVIDIDO factor'''
+    if p[2] == '+':
+        p[0] = p[1] + p[3]
+    elif p[2] == '-':
+        p[0] = p[1] - p[3]
+    elif p[2] == '*':
+        p[0] = p[1] * p[3]
+    elif p[2] == '/':
+        p[0] = p[1] / p[3]
+
+def p_number(p):
+    '''number  : INTEGER
+               | FLOAT'''
+    p[0] = eval(p[1])
+
+
+def p_number_signed(p): 
+    '''number  : MENOS INTEGER
+               | MENOS FLOAT'''
+    p[0] = eval("-"+p[2])
 
 
 def p_error(p):
     if not p:
         print "SYNTAX ERROR AT EOF"
-  
   
   
 bparser = yacc.yacc()

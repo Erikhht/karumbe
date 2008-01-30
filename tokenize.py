@@ -21,12 +21,13 @@
 from ply import *
 
 keywords = (
-    'REPETIR','UN','TIENE','Y','ES','FIN','VECES','COMMENT','MLCOMMENT'
+    'REPETIR','UN','TIENE','Y','ES','FIN','VECES','COMMENT','MLCOMMENT',
+    'USAR'
 ) 
 
 
 tokens = keywords + (
-     'PLUS','MINUS','TIMES','DIVIDE','POWER',
+     'MAS','MENOS','MULTIPLICADO','DIVIDIDO','POTENCIA',
      'LPAREN','RPAREN','LT','LE','GT','GE','NE',
      'COMMA','SEMI', 'INTEGER','FLOAT', 'STRING',
      'ID','NEWLINE'
@@ -50,11 +51,11 @@ def t_COMMENT(t):
 
     
 
-t_PLUS    = r'\+'
-t_MINUS   = r'-'
-t_TIMES   = r'\*'
-t_POWER   = r'\^'
-t_DIVIDE  = r'/'
+t_MAS    = r'\+'
+t_MENOS   = r'-'
+t_MULTIPLICADO   = r'\*'
+t_POTENCIA   = r'\^'
+t_DIVIDIDO  = r'/'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 t_LT      = r'<'
