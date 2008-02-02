@@ -21,7 +21,7 @@
 
 import parse
 
-data = open("/home/crodas/projects/karumbe/ejemplos/cuadrado.k").read()
+data = open("ejemplos/cuadrado.k").read()
 
       
 print parse.parse(data)
