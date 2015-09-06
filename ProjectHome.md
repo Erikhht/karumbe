@@ -7,10 +7,15 @@ Orientado para niños y jóvenes.
 
 
 ## Ejemplo ##
-**un** _cuadrado_ **tiene** _lado_ **y es**
-> repetir 4 **veces**
-> > rotar _izquierda_ 90
-> > dibujar _lado_
 
-> fin
-fin
+ **un** _cuadrado_ **tiene** _lado_ **y es**
+
+ > repetir 4 **veces**
+
+ > > rotar _izquierda_ 90
+
+ > > dibujar _lado_
+
+ > fin
+
+ fin
