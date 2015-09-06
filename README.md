@@ -1,5 +1,5 @@
 # karumbe
-**Automatically exported from htpp://code.google.com/p/karumbe**
+**Automatically exported from http://code.google.com/p/karumbe**
 
 Karumbe es un lenguaje de programación funcional con sintaxis 100% en español.
 Orientado para niños y jóvenes.
