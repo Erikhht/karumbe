@@ -4,6 +4,9 @@
 Karumbe es un lenguaje de programación funcional con sintaxis 100% en español.
 Orientado para niños y jóvenes.
 
+## Code license
+[GNU GPL v2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+
 ## Filosofia ##
   * Sintaxis facil de aprender
   * Todo es una función
